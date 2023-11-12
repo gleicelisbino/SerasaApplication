@@ -1,5 +1,6 @@
 package org.api.serasa.controller;
 
+import org.api.serasa.dto.CustomerRequestDTO;
 import org.api.serasa.model.CustomerModel;
 import org.api.serasa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,15 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/create")
-    public ResponseEntity<CustomerModel> createCustomer(@RequestBody CustomerModel customerModel) {
+    public ResponseEntity<CustomerModel> createCustomer(@RequestBody CustomerRequestDTO customerModel) {
         return new ResponseEntity<>(customerService.saveCustomer(customerModel), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteCustomerByCpdf/{cpf}")
         public ResponseEntity<CustomerModel> deleteCustomerByCpf(@PathVariable String cpf){
         try{
-            CustomerModel customerModel = customerService.getCustomerByCpf(cpf);
-            return new ResponseEntity<>(customerModel, HttpStatus.OK);
+            customerService.deleteCustomerByCpf(cpf);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

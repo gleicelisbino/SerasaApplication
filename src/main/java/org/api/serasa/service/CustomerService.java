@@ -1,6 +1,8 @@
 package org.api.serasa.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.api.serasa.dto.CustomerRequestDTO;
+import org.api.serasa.mapper.CustomerMapper;
 import org.api.serasa.model.CustomerModel;
 import org.api.serasa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +13,20 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public CustomerModel saveCustomer(CustomerModel customerModel) {
+    @Autowired
+    private CustomerMapper customerMapper;
+
+    public CustomerModel saveCustomer(CustomerRequestDTO customerRequestDTO) {
         try {
-            if (customerModel != null) {
+            if (customerRequestDTO != null) {
+                CustomerModel customerModel = customerMapper.convertToEntity(customerRequestDTO);
+                customerModel.setCpf(customerRequestDTO.getCpf());
                 return customerRepository.save(customerModel);
             } else {
-                throw new IllegalArgumentException("CustomerModel cannot be null.");
+                throw new IllegalArgumentException("CustomerRequestDTO cannot be null.");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error to save Customer", e);
+            throw new RuntimeException("Error saving Customer", e);
         }
     }
 
