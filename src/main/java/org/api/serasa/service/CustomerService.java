@@ -1,11 +1,10 @@
 package org.api.serasa.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.api.serasa.model.CustomerModel;
 import org.api.serasa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CustomerService {
@@ -13,10 +12,22 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public CustomerModel saveCustomer(CustomerModel customerModel) {
-        if (customerModel != null) {
-            return customerRepository.save(customerModel);
-        } else {
-            throw new IllegalArgumentException("CustomerModel cannot be null.");
+        try {
+            if (customerModel != null) {
+                return customerRepository.save(customerModel);
+            } else {
+                throw new IllegalArgumentException("CustomerModel cannot be null.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error to save Customer", e);
+        }
+    }
+    public CustomerModel getCustomerByCpf(String cpf) {
+        try {
+            return customerRepository.findByCpf(cpf)
+                    .orElseThrow(() -> new EntityNotFoundException("Customer can not be found: " + cpf));
+        } catch (Exception e) {
+            throw new RuntimeException("Error to save Customer", e);
         }
     }
 }
