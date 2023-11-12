@@ -28,4 +28,15 @@ public class CustomerController {
         }
     }
 
+    @PutMapping("/updateCustomerByCpf/{cpf}")
+    public ResponseEntity<CustomerModel> updateCustomerByCpf(@RequestBody CustomerModel customerModel,
+                                                             @PathVariable String cpf){
+        try {
+            CustomerModel customer = customerService.updateCustomerByCpf(customerModel,cpf);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

@@ -22,6 +22,15 @@ public class CustomerService {
             throw new RuntimeException("Error to save Customer", e);
         }
     }
+
+    public CustomerModel updateCustomerByCpf(CustomerModel updatedCustomer, String cpf) {
+            CustomerModel existingCustomer = getCustomerByCpf(cpf);
+                existingCustomer.setName(updatedCustomer.getName());
+                existingCustomer.setBirthdayDate(updatedCustomer.getBirthdayDate());
+                existingCustomer.setAddress(updatedCustomer.getAddress());
+                existingCustomer.setEmail(updatedCustomer.getEmail());
+                return customerRepository.save(existingCustomer);
+    }
     public CustomerModel getCustomerByCpf(String cpf) {
         try {
             return customerRepository.findByCpf(cpf)
