@@ -18,6 +18,16 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.saveCustomer(customerModel), HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/deleteCustomerByCpdf/{cpf}")
+        public ResponseEntity<CustomerModel> deleteCustomerByCpf(@PathVariable String cpf){
+        try{
+            CustomerModel customerModel = customerService.getCustomerByCpf(cpf);
+            return new ResponseEntity<>(customerModel, HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/getCustomerByCpf/{cpf}")
     public ResponseEntity<CustomerModel> getCustomerByCpf(@PathVariable String cpf) {
         try {
