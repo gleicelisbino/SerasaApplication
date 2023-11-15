@@ -1,6 +1,7 @@
 package org.api.serasa.controller;
 
 import org.api.serasa.dto.CustomerRequestDTO;
+import org.api.serasa.dto.CustomerResponseDTO;
 import org.api.serasa.model.CustomerModel;
 import org.api.serasa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping("/create")
-    public ResponseEntity<CustomerModel> createCustomer(@RequestBody CustomerRequestDTO customerModel) {
+    public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody CustomerRequestDTO customerModel) {
         return new ResponseEntity<>(customerService.saveCustomer(customerModel), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteCustomerByCpdf/{cpf}")
-        public ResponseEntity<CustomerModel> deleteCustomerByCpf(@PathVariable String cpf){
+        public ResponseEntity<CustomerResponseDTO> deleteCustomerByCpf(@PathVariable String cpf){
         try{
             customerService.deleteCustomerByCpf(cpf);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -30,21 +31,20 @@ public class CustomerController {
     }
 
     @GetMapping("/getCustomerByCpf/{cpf}")
-    public ResponseEntity<CustomerModel> getCustomerByCpf(@PathVariable String cpf) {
+    public ResponseEntity<CustomerResponseDTO> getCustomerByCpf(@PathVariable String cpf) {
         try {
-            CustomerModel customer = customerService.getCustomerByCpf(cpf);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            return new ResponseEntity<>( customerService.getCustomerByCpf(cpf), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/updateCustomerByCpf/{cpf}")
-    public ResponseEntity<CustomerModel> updateCustomerByCpf(@RequestBody CustomerModel customerModel,
+    public ResponseEntity<CustomerResponseDTO> updateCustomerByCpf(@RequestBody
+                                                                 CustomerRequestDTO customerModel,
                                                              @PathVariable String cpf){
         try {
-            CustomerModel customer = customerService.updateCustomerByCpf(customerModel,cpf);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
+            return new ResponseEntity<>(customerService.updateCustomerByCpf(customerModel,cpf), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
