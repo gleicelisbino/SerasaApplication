@@ -11,8 +11,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ScoreMapper {
 
-    ScoreMapper INSTANCE = Mappers.getMapper(ScoreMapper.class);
-
     ScoreModel convertToEntity(ScoreRequestDTO scoreRequestDTO);
 
     @Mapping(target = "points", source = "points")

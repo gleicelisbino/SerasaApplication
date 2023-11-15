@@ -6,8 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
-import org.api.serasa.dto.score.ScoreRequestDTO;
-import org.api.serasa.dto.score.ScoreResponseDTO;
 
 @Data
 @Entity

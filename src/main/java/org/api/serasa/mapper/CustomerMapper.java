@@ -6,12 +6,9 @@ import org.api.serasa.model.CustomerModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
-
-    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
     CustomerModel convertToEntity(CustomerRequestDTO customerRequestDTO);
 

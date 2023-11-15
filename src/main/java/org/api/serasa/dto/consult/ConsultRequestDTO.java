@@ -1,11 +1,18 @@
 package org.api.serasa.dto.consult;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import org.api.serasa.model.CustomerModel;
+
+import java.util.Date;
 
 @Data
 public class ConsultRequestDTO {
 
-    @NotNull
-    private Long customerId;
+    private Long id;
+
+    @ManyToOne
+    private CustomerModel customerModel;
+
+    private Date dataConsult;
 }
