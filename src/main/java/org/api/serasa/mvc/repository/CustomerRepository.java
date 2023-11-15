@@ -1,4 +1,4 @@
-package org.api.serasa.repository;
+package org.api.serasa.mvc.repository;
 
 import org.api.serasa.model.CustomerModel;
 import org.springframework.data.repository.CrudRepository;

@@ -1,4 +1,4 @@
-package org.api.serasa.dto;
+package org.api.serasa.dto.customer;
 
 import jakarta.persistence.Id;
 import lombok.Data;

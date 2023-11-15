@@ -1,11 +1,10 @@
-package org.api.serasa.service;
+package org.api.serasa.mvc.service;
 
-import jakarta.persistence.EntityNotFoundException;
-import org.api.serasa.dto.CustomerRequestDTO;
-import org.api.serasa.dto.CustomerResponseDTO;
+import org.api.serasa.dto.customer.CustomerRequestDTO;
+import org.api.serasa.dto.customer.CustomerResponseDTO;
 import org.api.serasa.mapper.CustomerMapper;
 import org.api.serasa.model.CustomerModel;
-import org.api.serasa.repository.CustomerRepository;
+import org.api.serasa.mvc.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

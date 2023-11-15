@@ -1,9 +1,8 @@
-package org.api.serasa.controller;
+package org.api.serasa.mvc.controller;
 
-import org.api.serasa.dto.CustomerRequestDTO;
-import org.api.serasa.dto.CustomerResponseDTO;
-import org.api.serasa.model.CustomerModel;
-import org.api.serasa.service.CustomerService;
+import org.api.serasa.dto.customer.CustomerRequestDTO;
+import org.api.serasa.dto.customer.CustomerResponseDTO;
+import org.api.serasa.mvc.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

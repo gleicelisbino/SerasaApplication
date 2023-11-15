@@ -1,7 +1,7 @@
 package org.api.serasa.mapper;
 
-import org.api.serasa.dto.CustomerRequestDTO;
-import org.api.serasa.dto.CustomerResponseDTO;
+import org.api.serasa.dto.customer.CustomerRequestDTO;
+import org.api.serasa.dto.customer.CustomerResponseDTO;
 import org.api.serasa.model.CustomerModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -15,7 +15,7 @@ public interface CustomerMapper {
 
     CustomerModel convertToEntity(CustomerRequestDTO customerRequestDTO);
 
-    @Mapping(target = "cpf", source = "cpf")
+
     @Mapping(target = "birthdayDate", source = "birthdayDate")
     @Mapping(target = "address", source = "address")
     @Mapping(target = "email", source = "email")
