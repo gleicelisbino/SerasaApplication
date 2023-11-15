@@ -15,14 +15,9 @@ import java.util.Date;
 @Data
 @Entity
 public class ConsultModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private CustomerModel customerModel;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataConsult;

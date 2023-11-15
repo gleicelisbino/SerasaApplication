@@ -1,10 +1,10 @@
 package org.api.serasa.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,5 +15,5 @@ public class CustomerModel {
     private String email;
     private String name;
     private Date birthdayDate;
-}
 
+}

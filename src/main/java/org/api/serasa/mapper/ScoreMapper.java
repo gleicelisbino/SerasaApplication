@@ -13,8 +13,6 @@ public interface ScoreMapper {
 
     ScoreModel convertToEntity(ScoreRequestDTO scoreRequestDTO);
 
-    @Mapping(target = "points", source = "points")
-    @Mapping(target = "customerModel", source = "customerModel")
     ScoreResponseDTO convertToScoreResponseDTO(ScoreModel scoreModel);
 
     void updateEntityFromDTO(@MappingTarget ScoreModel scoreModel, ScoreRequestDTO scoreRequestDTO);

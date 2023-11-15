@@ -1,12 +1,11 @@
 package org.api.serasa.dto.score;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.api.serasa.model.CustomerModel;
+
+import java.util.Date;
 
 @Data
 public class ScoreRequestDTO {
@@ -16,6 +15,10 @@ public class ScoreRequestDTO {
 
     private int points;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastUpdate;
+
     @OneToOne
-    private CustomerModel customerModel;
+    @JoinColumn(name = "customer_cpf", referencedColumnName = "cpf")
+    private CustomerModel customer;
 }

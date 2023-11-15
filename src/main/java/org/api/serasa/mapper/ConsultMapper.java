@@ -14,8 +14,7 @@ public interface ConsultMapper {
 
     ConsultModel convertToEntity(ConsultRequestDTO consultRequestDTO);
 
-    @Mapping(target = "dataConsult", source = "dataConsult")
-    @Mapping(target = "customerModel", source = "customerModel")
+
     ConsultResponseDTO convertToDTO(ConsultModel consultModel);
 
     List<ConsultResponseDTO> convertToDTOList(List<ConsultModel> consultModels);
